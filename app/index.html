@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Panels — Cover Art Maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app">
+  <aside class="controls">
+    <h1>Neon Panels</h1>
+    <p class="tagline">Your photos, a multi-panel poster, one bold caption. Cover art in the sunset-and-neon style, exported as a PNG. Everything happens on this machine — photos are never uploaded.</p>
+
+    <section>
+      <h2>1 · Photos</h2>
+      <label class="file-label">Add photos
+        <input id="photoInput" type="file" accept="image/*" multiple>
+      </label>
+      <button id="sampleBtn" type="button">Try the built-in samples</button>
+      <div id="tray" class="tray" aria-label="Your photos"></div>
+      <button id="fillAllBtn" type="button">Put the current photo in every panel</button>
+      <p class="hint">Click a photo to place it in the selected panel. Drag photos from your computer anywhere onto the poster to add them.</p>
+    </section>
+
+    <section>
+      <h2>2 · Panels</h2>
+      <label>Layout
+        <select id="layoutSel">
+          <option value="mural">Mural — hero + five panels</option>
+          <option value="quad">Quad — four equal panels</option>
+          <option value="triptych">Triptych — three columns</option>
+          <option value="duo">Duo — tall hero + two panels</option>
+        </select>
+      </label>
+      <p class="hint">Selected: <strong id="panelLabel">Panel 1</strong>. Click a panel on the poster, drag its photo to pan, scroll over it to zoom.</p>
+      <label>Zoom of selected panel <span id="zoomVal">1.18×</span>
+        <input id="zoomRange" type="range" min="1" max="3.5" step="0.01" value="1.18">
+      </label>
+      <button id="resetCropBtn" type="button">Reset this panel's crop</button>
+    </section>
+
+    <section>
+      <h2>3 · Words &amp; colour</h2>
+      <label>Caption
+        <input id="titleInput" type="text" maxlength="42" value="Neon Shores">
+      </label>
+      <label>Sticker line
+        <input id="subInput" type="text" maxlength="34" value="One Last Ride">
+      </label>
+      <label>Colour grade
+        <select id="gradeSel">
+          <option value="sunset">Sunset — orange into magenta</option>
+          <option value="neon">Neon — cyan and hot pink</option>
+          <option value="gold">Golden hour — amber wash</option>
+          <option value="noir">Noir — drained and moody</option>
+        </select>
+      </label>
+      <label>Grade strength <span id="gradeVal">85%</span>
+        <input id="gradeRange" type="range" min="0" max="100" step="1" value="85">
+      </label>
+    </section>
+
+    <section>
+      <h2>4 · Export</h2>
+      <label>Post size
+        <select id="sizeSel">
+          <option value="1080x1350">1080 × 1350 — portrait post</option>
+          <option value="1080x1080">1080 × 1080 — square post</option>
+          <option value="1920x1080">1920 × 1080 — wide banner</option>
+        </select>
+      </label>
+      <button id="exportBtn" class="primary" type="button">Export PNG</button>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+  <main class="stage" id="stage">
+    <canvas id="preview" width="864" height="1080" aria-label="Live preview of your cover"></canvas>
+    <p id="dropHint" hidden>Drop photos to add them</p>
+  </main>
+</div>
+<canvas id="coverCanvas" hidden></canvas>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
